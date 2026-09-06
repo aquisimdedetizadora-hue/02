@@ -245,50 +245,145 @@ h2 em {
   transform: translateX(5px);
 }
 
-/* Ambient Orbs */
+/* Ambient Floating Orbs (Aesthetic Infinite Loop) */
+.hero-orb-field {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 .hero-orb {
   position: absolute;
   border-radius: 50%;
   pointer-events: none;
+  will-change: transform;
+  transform-origin: center center;
 }
 
 .orb-one {
-  width: 42vw;
-  height: 42vw;
-  right: -8vw;
-  top: 16%;
-  background: radial-gradient(circle at 30% 30%, #dce9ff, #a5c9ff 38%, #6f88d6 70%, transparent 71%);
-  filter: blur(20px);
-  opacity: 0.72;
-  animation: floatSlow 18s ease-in-out infinite alternate;
+  width: clamp(380px, 46vw, 700px);
+  height: clamp(380px, 46vw, 700px);
+  right: -6vw;
+  top: 10%;
+  background: radial-gradient(
+    circle at 35% 35%,
+    rgba(215, 233, 255, 0.95),
+    rgba(140, 188, 255, 0.85) 35%,
+    rgba(80, 120, 235, 0.72) 65%,
+    rgba(50, 90, 210, 0) 72%
+  );
+  filter: blur(48px);
+  opacity: 0.8;
+  animation: orbTrajectoryAlpha 26s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
 }
 
 .orb-two {
-  width: 26vw;
-  height: 26vw;
-  right: 18%;
-  bottom: -10%;
-  background: radial-gradient(circle, #ece8ff, #a4a0cf 58%, transparent 59%);
-  filter: blur(25px);
-  opacity: 0.68;
-  animation: floatReverse 22s ease-in-out infinite alternate;
+  width: clamp(320px, 38vw, 580px);
+  height: clamp(320px, 38vw, 580px);
+  right: 22%;
+  bottom: -6%;
+  background: radial-gradient(
+    circle at 38% 38%,
+    rgba(238, 230, 255, 0.95),
+    rgba(182, 168, 255, 0.82) 38%,
+    rgba(118, 105, 230, 0.68) 65%,
+    rgba(90, 80, 200, 0) 72%
+  );
+  filter: blur(52px);
+  opacity: 0.75;
+  animation: orbTrajectoryBeta 32s cubic-bezier(0.42, 0, 0.58, 1) infinite;
 }
 
-@keyframes floatSlow {
+.orb-three {
+  width: clamp(260px, 30vw, 460px);
+  height: clamp(260px, 30vw, 460px);
+  left: -5vw;
+  top: 35%;
+  background: radial-gradient(
+    circle at 40% 40%,
+    rgba(210, 245, 255, 0.9),
+    rgba(130, 210, 255, 0.7) 40%,
+    rgba(50, 160, 240, 0.55) 66%,
+    rgba(30, 130, 220, 0) 72%
+  );
+  filter: blur(46px);
+  opacity: 0.62;
+  animation: orbTrajectoryGamma 29s cubic-bezier(0.44, 0.08, 0.56, 0.92) infinite;
+}
+
+/* Multi-directional organic trajectory keyframes */
+@keyframes orbTrajectoryAlpha {
   0% {
-    transform: translate(0, 0) scale(1);
+    transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+  }
+  14% {
+    transform: translate3d(-38vw, 16vh, 0) scale(1.14) rotate(45deg);
+  }
+  28% {
+    transform: translate3d(-62vw, -10vh, 0) scale(0.92) rotate(90deg);
+  }
+  42% {
+    transform: translate3d(-28vw, 36vh, 0) scale(1.18) rotate(150deg);
+  }
+  58% {
+    transform: translate3d(-68vw, 32vh, 0) scale(0.95) rotate(210deg);
+  }
+  72% {
+    transform: translate3d(-18vw, 46vh, 0) scale(1.12) rotate(270deg);
+  }
+  86% {
+    transform: translate3d(-12vw, -14vh, 0) scale(0.96) rotate(320deg);
   }
   100% {
-    transform: translate(-30px, 40px) scale(1.05);
+    transform: translate3d(0, 0, 0) scale(1) rotate(360deg);
   }
 }
 
-@keyframes floatReverse {
+@keyframes orbTrajectoryBeta {
   0% {
-    transform: translate(0, 0) scale(1);
+    transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+  }
+  16% {
+    transform: translate3d(18vw, -36vh, 0) scale(1.16) rotate(-50deg);
+  }
+  33% {
+    transform: translate3d(-38vw, -44vh, 0) scale(0.88) rotate(-110deg);
+  }
+  49% {
+    transform: translate3d(-54vw, -12vh, 0) scale(1.15) rotate(-175deg);
+  }
+  66% {
+    transform: translate3d(-22vw, 22vh, 0) scale(0.93) rotate(-240deg);
+  }
+  82% {
+    transform: translate3d(14vw, -8vh, 0) scale(1.1) rotate(-305deg);
   }
   100% {
-    transform: translate(25px, -35px) scale(0.95);
+    transform: translate3d(0, 0, 0) scale(1) rotate(-360deg);
+  }
+}
+
+@keyframes orbTrajectoryGamma {
+  0% {
+    transform: translate3d(0, 0, 0) scale(0.95) rotate(0deg);
+  }
+  20% {
+    transform: translate3d(36vw, 22vh, 0) scale(1.18) rotate(60deg);
+  }
+  40% {
+    transform: translate3d(58vw, -22vh, 0) scale(0.92) rotate(130deg);
+  }
+  60% {
+    transform: translate3d(24vw, -32vh, 0) scale(1.12) rotate(210deg);
+  }
+  80% {
+    transform: translate3d(40vw, 14vh, 0) scale(0.88) rotate(285deg);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(0.95) rotate(360deg);
   }
 }
 
