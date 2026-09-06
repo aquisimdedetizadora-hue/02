@@ -1,0 +1,6 @@
+{
+  "name": "Essentia",
+  "description": "Site institucional premium e minimalista com design sofisticado, tipografia refinada e experiências digitais que inspiram.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
